@@ -5,8 +5,8 @@ const startCells = [
     "", "", "",
     "", "", ""
 ]
-let go = "circle"
-infoDisplay.textContent = "Circle goes first"
+let go = "Noughts"
+infoDisplay.textContent = "Noughts goes first"
 
 function createBoard(){
     startCells.forEach((_cell, index) => {
@@ -24,7 +24,7 @@ function addGo(e){
     const goDisplay = document.createElement("div")
     goDisplay.classList.add(go)
     e.target.append(goDisplay)
-    go = go === "circle" ? "cross" : "circle" // if it is not circle, change to cross, otherwise keep as circle
+    go = go === "Noughts" ? "Cross" : "Noughts" // if it is not noughts, change to cross, otherwise keep as noughts
     infoDisplay.textContent = go + "'s turn"
     e.target.removeEventListener("click", addGo)
     checkScore()
@@ -39,18 +39,24 @@ function checkScore(){
     ]
 
     winningCombos.forEach(array => { // Getting array
-        const circleWins = array.every(cell => allSquares[cell].firstChild?.classList.contains("circle")) // Checking every item in array if its a circle
+        const circleWins = array.every(cell => allSquares[cell].firstChild?.classList.contains("Noughts")) // Checking every item in array if its  noughts
         if (circleWins) {
-            infoDisplay.textContent = "Circle wins"
+            infoDisplay.textContent = "Noughts wins"
             allSquares.forEach(square => square.replaceWith(square.cloneNode(true)))
         }
     })
 
     winningCombos.forEach(array => { // Getting array
-        const crossWins = array.every(cell => allSquares[cell].firstChild?.classList.contains("cross")) // Checking every item in array if its a circle
+        const crossWins = array.every(cell => allSquares[cell].firstChild?.classList.contains("Cross")) // Checking every item in array if its a cross
         if (crossWins) {
             infoDisplay.textContent = "Cross wins"
             allSquares.forEach(square => square.replaceWith(square.cloneNode(true)))
         }
     })
+
+    const isDraw = [...allSquares].every(square => square.firstChild)
+    if (isDraw){
+        infoDisplay.textContent = "Draw"
+        allSquares.forEach(square => square.replaceWith(square.cloneNode(true)))
+    }
 }
