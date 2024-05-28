@@ -1,5 +1,6 @@
 const gameBoard = document.querySelector("#gameboard")
 const infoDisplay = document.querySelector("#info")
+const resetButton = document.querySelector("#resetButton")
 const startCells = [
     "", "", "",
     "", "", "",
@@ -9,6 +10,7 @@ let go = "Noughts"
 infoDisplay.textContent = "Noughts goes first"
 
 function createBoard(){
+    gameBoard.innerHTML = '';
     startCells.forEach((_cell, index) => {
         const cellElement = document.createElement("div")
         cellElement.classList.add("square")  
@@ -17,8 +19,6 @@ function createBoard(){
         gameBoard.append(cellElement)
     })
 }
-
-createBoard()
 
 function addGo(e){
     const goDisplay = document.createElement("div")
@@ -60,3 +60,13 @@ function checkScore(){
         allSquares.forEach(square => square.replaceWith(square.cloneNode(true)))
     }
 }
+
+function resetGame() {
+    go = "Noughts"
+    infoDisplay.textContent = "Noughts goes first"
+    createBoard()
+}
+
+createBoard()
+
+resetButton.addEventListener("click", resetGame)
