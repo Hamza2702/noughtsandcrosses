@@ -16,17 +16,17 @@ body {
 #gameboard {
     width: 300px;
     height: 300px;
-    background-color: black;
+    background-color: white;
     display: flex;
     flex-wrap: wrap;
-    border: solid 1px black;
+    border: solid 3px white;
 }
 
 .square {
     width: 100px;
     height: 100px;
     background-color: #709dad;
-    border: solid 2px black;
+    border: solid 3px white;
     box-sizing: border-box;
     display: flex;
     justify-content: center;
@@ -34,16 +34,16 @@ body {
 }
 
 .Noughts {
-    height: 90px;
-    width: 90px;
+    height: 50px;
+    width: 50px;
     border-radius: 50%;
-    border: 15px solid #FFC470;
+    border: 8px solid #FFC470;
     box-sizing: border-box;
 }
 
 .Cross {
-    height: 90px;
-    width: 90px;
+    height: 60px;
+    width: 60px;
     position: relative;
     transform: rotate(45deg);
 }
@@ -51,21 +51,21 @@ body {
 .Cross:before, .Cross:after{
     content: "";
     position: absolute;
-    background-color: #DD5746;
+    background-color: #dd5846;
 }
 
 .Cross:before{
     left: 50%;
-    width: 30%;
-    height: 100%;
-    margin-left: -15%;
+    width: 15%;
+    height: 95%;
+    margin-left: -10%;
 }
 
 .Cross:after{
     top: 50%;
-    height: 30%;
-    width: 100%;
-    margin-top: -15%;
+    height: 15%;
+    width: 95%;
+    margin-top: -10%;
 }
 
 .resetButton{
@@ -80,4 +80,30 @@ body {
 .gameBackground{
     background-color: #4793AF;
     transition: background-color 0.5s ease;
+}
+
+a{
+    color: white;
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 150px;
+}
+
+.navLinks {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.name {
+    text-align: center;
+    margin-top: 10px;
+}
+
+span{
+    margin: 0 10px
 }
