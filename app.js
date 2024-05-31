@@ -1,78 +1,96 @@
-const gameBoard = document.querySelector("#gameboard")
-const infoDisplay = document.querySelector("#info")
-const resetButton = document.querySelector("#resetButton")
+const gameBoard = document.querySelector("#gameboard");
+const infoDisplay = document.querySelector("#info");
+const resetButton = document.querySelector("#resetButton");
+const endButton = document.querySelector("#endButton");
 const gameBackground = document.querySelector('.gameBackground');
+const noughtScore = document.getElementById('noughtScore');
+const crossScore = document.getElementById('crossScore');
 const startCells = [
     "", "", "",
     "", "", "",
     "", "", ""
-]
-let go = "Noughts"
-infoDisplay.textContent = "Noughts goes first"
+];
+let noughts = 0;
+let crosses = 0;
+let go = "Noughts";
+infoDisplay.textContent = "Noughts goes first";
 
-function createBoard(){
+function createBoard() {
     gameBoard.innerHTML = '';
     startCells.forEach((_cell, index) => {
-        const cellElement = document.createElement("div")
-        cellElement.classList.add("square")  
-        cellElement.id = index
-        cellElement.addEventListener("click", addGo)
-        gameBoard.append(cellElement)
-    })
+        const cellElement = document.createElement("div");
+        cellElement.classList.add("square");
+        cellElement.id = index;
+        cellElement.addEventListener("click", addGo);
+        gameBoard.append(cellElement);
+    });
 }
 
-function addGo(e){
-    const goDisplay = document.createElement("div")
-    goDisplay.classList.add(go)
-    e.target.append(goDisplay)
-    go = go === "Noughts" ? "Cross" : "Noughts" // if it is not noughts, change to cross, otherwise keep as noughts
-    infoDisplay.textContent = go + "'s turn"
-    e.target.removeEventListener("click", addGo)
-    checkScore()
+function addGo(e) {
+    const goDisplay = document.createElement("div");
+    goDisplay.classList.add(go);
+    e.target.append(goDisplay);
+    go = go === "Noughts" ? "Cross" : "Noughts"; // if it is not noughts, change to cross, otherwise keep as noughts
+    infoDisplay.textContent = go + "'s turn";
+    e.target.removeEventListener("click", addGo);
+    checkScore();
 }
 
-function checkScore(){
-    const allSquares = document.querySelectorAll(".square")
+function checkScore() {
+    const allSquares = document.querySelectorAll(".square");
     const winningCombos = [
-        [0,1,2], [3,4,5], [6,7,8],
-        [0,3,6], [1,4,7], [2,5,8],
-        [0,4,8], [2,4,6]
-    ]
+        [0, 1, 2], [3, 4, 5], [6, 7, 8],
+        [0, 3, 6], [1, 4, 7], [2, 5, 8],
+        [0, 4, 8], [2, 4, 6]
+    ];
 
     for (const array of winningCombos) { // Getting array
-        const circleWins = array.every(cell => allSquares[cell].firstChild?.classList.contains("Noughts")) // Checking every item in array if its noughts
+        const circleWins = array.every(cell => allSquares[cell].firstChild?.classList.contains("Noughts")); // Checking every item in array if its noughts
         if (circleWins) {
-            infoDisplay.textContent = "Noughts wins"
-            allSquares.forEach(square => square.replaceWith(square.cloneNode(true)))
+            infoDisplay.textContent = "Noughts wins";
+            allSquares.forEach(square => square.replaceWith(square.cloneNode(true)));
             gameBackground.style.background = '#FFC470';
-            return
+            noughts += 1;
+            noughtScore.textContent = noughts;
+            return;
         }
     }
 
     for (const array of winningCombos) { // Getting array
-        const crossWins = array.every(cell => allSquares[cell].firstChild?.classList.contains("Cross")) // Checking every item in array if its a cross
+        const crossWins = array.every(cell => allSquares[cell].firstChild?.classList.contains("Cross")); // Checking every item in array if its a cross
         if (crossWins) {
-            infoDisplay.textContent = "Cross wins"
-            allSquares.forEach(square => square.replaceWith(square.cloneNode(true)))
+            infoDisplay.textContent = "Cross wins";
+            allSquares.forEach(square => square.replaceWith(square.cloneNode(true)));
             gameBackground.style.background = '#DD5746';
-            return
+            crosses += 1;
+            crossScore.textContent = crosses;
+            return;
         }
     }
 
-    const isDraw = [...allSquares].every(square => square.firstChild)
-    if (isDraw){
-        infoDisplay.textContent = "Draw"
-        allSquares.forEach(square => square.replaceWith(square.cloneNode(true)))
+    const isDraw = [...allSquares].every(square => square.firstChild);
+    if (isDraw) {
+        infoDisplay.textContent = "Draw";
+        allSquares.forEach(square => square.replaceWith(square.cloneNode(true)));
     }
 }
 
 function resetGame() {
-    go = "Noughts"
-    infoDisplay.textContent = "Noughts goes first"
+    go = "Noughts";
+    infoDisplay.textContent = "Noughts goes first";
     gameBackground.style.background = '#4793AF';
-    createBoard()
+    createBoard();
 }
 
-createBoard()
+function endGame(){
+    noughts = 0;
+    crosses = 0;
+    crossScore.textContent = crosses;
+    noughtScore.textContent = noughts;
+    resetGame();
+}
 
-resetButton.addEventListener("click", resetGame)
+createBoard();
+
+resetButton.addEventListener("click", resetGame);
+endButton.addEventListener("click", endGame);
