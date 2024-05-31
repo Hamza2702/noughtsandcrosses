@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 body {
     margin: 0;
@@ -13,6 +13,12 @@ body {
     height: 100vh;
 }
 
+.gameContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 #gameboard {
     width: 300px;
     height: 300px;
@@ -20,6 +26,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     border: solid 3px white;
+    margin: 0 20px;
 }
 
 .square {
@@ -48,41 +55,42 @@ body {
     transform: rotate(45deg);
 }
 
-.Cross:before, .Cross:after{
+.Cross:before, .Cross:after {
     content: "";
     position: absolute;
     background-color: #dd5846;
 }
 
-.Cross:before{
+.Cross:before {
     left: 50%;
     width: 15%;
     height: 95%;
     margin-left: -10%;
 }
 
-.Cross:after{
+.Cross:after {
     top: 50%;
     height: 15%;
     width: 95%;
     margin-top: -10%;
 }
 
-.resetButton{
+.resetButton {
     padding: 20px;
-    background-color:rgb(243, 243, 215);
+    background-color: rgb(243, 243, 215);
     color: black;
     font-family: "Poppins";
     border-radius: 5px;
     border-style: none;
+    margin-top: 20px;
 }
 
-.gameBackground{
+.gameBackground {
     background-color: #4793AF;
     transition: background-color 0.5s ease;
 }
 
-a{
+a {
     color: white;
 }
 
@@ -104,6 +112,20 @@ footer {
     margin-top: 10px;
 }
 
-span{
-    margin: 0 10px
+span {
+    margin: 0 10px;
+}
+
+.scoreBoard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #709dad96;
+    padding: 20px;
+    border-radius: 2px;
+    border: solid 5px white;
+}
+
+.noughtScore, .crossScore {
+    margin-top: 10px;
 }
