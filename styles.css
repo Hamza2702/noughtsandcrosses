@@ -129,3 +129,11 @@ span {
 .noughtScore, .crossScore {
     margin-top: 10px;
 }
+
+#noughtText{
+    color: #FFC470;
+}
+
+#crossText{
+    color: #dd5846;
+}
