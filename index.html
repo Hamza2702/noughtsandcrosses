@@ -7,19 +7,21 @@
         <link rel="stylesheet" href="styles.css">
     </head>
     <body class="gameBackground">
-        <div>
+        <div class="header">
             <h1>Noughts and Crosses</h1>
         </div>
+        <div class="scoreBoard">
+            <div class="score">
+                <h2 id="crossText">Crosses</h2>
+                <h2 id="crossScore" class="crossScore">0</h2>
+            </div>
+            <div class="score">
+                <h2 id="noughtText">Noughts</h2>
+                <h2 id="noughtScore" class="noughtScore">0</h2>
+            </div>
+        </div>
         <div class="gameContainer">
-            <div id="noughtScoreBoard" class="scoreBoard">
-                <h1 id="noughtText">Noughts</h1>
-                <h1 id="noughtScore" class="noughtScore">0</h1>
-            </div>
             <div id="gameboard"></div>
-            <div id="crossScoreBoard" class="scoreBoard">
-                <h1 id="crossText">Crosses</h1>
-                <h1 id="crossScore" class="crossScore">0</h1>
-            </div>
         </div>
         <p id="info"></p>
         <div>
@@ -39,16 +41,3 @@
         </div>
     </body>
 </html>
-<!--
-
-    TO DO:
-    - Change styling //
-    - Add a better user interface //
-    - Restart button (Idea: refresh page) //
-    - Potential score board?
-    - Add LinkedIn / GitHub footer //
-    - Test 
-
-    -- CUSTOM BACKGROUND STYLING (NOUGHTS FOR NOUGHTS AND CROSSES FOR THE CROSSES) MINIMAL SIMPLISTIC BACKGROUND STYLING PATTERNED ALL OVER
-
--->
